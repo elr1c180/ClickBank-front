@@ -22,7 +22,7 @@ const Card = () => {
         }
     }, []);
 
-    const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 123; // Замените на реальное значение или оставьте 123 как заглушку
+    // const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 123; // Замените на реальное значение или оставьте 123 как заглушку
 
     const handleClick = async (event) => {
         if (energyCount <= 0) {
