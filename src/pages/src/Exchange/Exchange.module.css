@@ -1,0 +1,13 @@
+.MobileView {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    margin-left: auto;
+    margin-top: 25%;
+    margin-right: auto;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+img {
+    width: 50%;
+}
