@@ -29,9 +29,7 @@
 }
 
 .Task {
-    margin: auto;
     display:flex;
-    text-align: center;
     padding: 5px 15px 0 0;
     border-radius: 10px;
     background: linear-gradient(10deg, #5792a9, transparent);
@@ -49,5 +47,5 @@
 .taskPool > img {
     width: 24px;
     height: 24px;
-    margin-top: 11px;
+    margin-top: 12px;
 }
