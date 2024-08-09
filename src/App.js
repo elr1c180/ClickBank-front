@@ -3,6 +3,7 @@ import './App.css';
 import Exchange from './pages/Exchange';
 import Airdrop from './pages/Airdrop';
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
+import Earn from './pages/Earn';
 
 function App() {
   const tele = window.Telegram.WebApp;
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Exchange />} />
             <Route path="/Exchange" element={<Exchange />} />
             <Route path="/Airdrop" element={<Airdrop />} />
+            <Route path="/Earn" element={<Earn/>}/>
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
