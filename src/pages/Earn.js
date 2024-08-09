@@ -16,7 +16,7 @@ const Earn = () => {
 
                 <div className={cl.Task}>
                     <div className={cl.taskIcon}>
-                        <img src={tg} />
+                        <img src={tg} alt="tg"/>
                     </div>
 
                     <div className={cl.taskTitle}>
