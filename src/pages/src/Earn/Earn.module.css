@@ -17,6 +17,11 @@
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    margin: 10px;
+}
+
+.Tasks > img {
+    width: 47px;
 }
 
 .Tasks > h4 {
@@ -25,18 +30,58 @@
 
 .Header > img {
     width:45%;
-    margin-top:10%
 }
 
-.Task {
+.tgTask {
     display:flex;
     padding: 5px 15px 0 0;
     border-radius: 10px;
     background: linear-gradient(10deg, #5792a9, transparent);
+    margin-top: 5px;
 }
 
-.taskIcon  {
-    text-align: center;
+.igTask {
+    display:flex;
+    padding: 5px 15px 0 0;
+    border-radius: 10px;
+    background: linear-gradient(10deg, #5792a9, transparent);
+    margin-top: 5px;
+}
+
+.ytTask {
+    display:flex;
+    padding: 5px 15px 0 0;
+    border-radius: 10px;
+    background: linear-gradient(10deg, #c54646, transparent);
+    margin-top: 5px;
+}
+
+.ytTask > .taskIcon > img {
+    width:47px;
+}
+
+.xTask {
+    display:flex;
+    padding: 5px 15px 0 0;
+    border-radius: 10px;
+    background: linear-gradient(10deg, #000000, transparent);
+    margin-top: 5px;
+}
+
+.facebookTask {
+    display:flex;
+    padding: 5px 15px 0 0;
+    border-radius: 10px;
+    background: linear-gradient(10deg, #5792a9, transparent);
+    margin-top: 5px;
+}
+
+.taskIcon {
+    width: 20%;
+}
+
+.taskIcon > img {
+    width: 47px;
 }
 
 .taskPool{
