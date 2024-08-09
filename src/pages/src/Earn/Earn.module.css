@@ -36,7 +36,10 @@
     display:flex;
     padding: 5px 15px 0 0;
     border-radius: 10px;
-    background: linear-gradient(10deg, #5792a9, transparent);
+    background: linear-gradient(
+    to right,
+    #1c92d2,#f2fcfe
+  );
     margin-top: 5px;
 }
 
@@ -44,7 +47,7 @@
     display:flex;
     padding: 5px 15px 0 0;
     border-radius: 10px;
-    background: linear-gradient(10deg, #5792a9, transparent);
+    background: linear-gradient(to right, rgb(131 58 180 / 50%), rgb(253 29 29 / 50%), rgb(252 176 69 / 50%));
     margin-top: 5px;
 }
 
@@ -52,7 +55,10 @@
     display:flex;
     padding: 5px 15px 0 0;
     border-radius: 10px;
-    background: linear-gradient(10deg, #c54646, transparent);
+    background: linear-gradient(
+    to right,
+    #e52d27,#b31217
+  );
     margin-top: 5px;
 }
 
@@ -64,7 +70,10 @@
     display:flex;
     padding: 5px 15px 0 0;
     border-radius: 10px;
-    background: linear-gradient(10deg, #000000, transparent);
+    background: linear-gradient(
+    to right,
+    #232526,#414345
+  );
     margin-top: 5px;
 }
 
