@@ -7,6 +7,7 @@ const Card = () => {
     const [counter, setCounter] = useState(0);
     const [userName, setUserName] = useState('');
     const [clickCount, setClickCount] = useState(0);
+    const [clickPositions, setClickPositions] = useState([]);
     const [energyCount, setEnergy] = useState(1000);
     const [isClicked, setIsClicked] = useState(false);
     const [error, setError] = useState('');
@@ -82,6 +83,9 @@ const Card = () => {
     };
 
     const formatNumber = (num) => {
+        if (num === undefined || num === null || isNaN(num)) {
+            return '0000 0000 0000 0000'; // Значение по умолчанию, если num не определен
+        }
         return `0000 0000 0000 ${num.toString().padStart(4, '0')}`;
     };
 
