@@ -13,50 +13,49 @@ const Card = () => {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        if (window.Telegram && window.Telegram.WebApp) {
-            const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id || 123;
-    
-            const fetchUserData = async () => {
-                try {
-                    const response = await fetch(`http://217.196.98.13:9000/user/${chatId}/`);
-                    if (response.ok) {
-                        const userData = await response.json();
-                        setUserName(userData.username);
-                        setEnergy(userData.energy);
-                        setClickCount(userData.balance);
-                    } else {
-                        setUserName('ELR1C180');
-                    }
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
+        const fetchUserData = async (chatId) => {
+            try {
+                const response = await fetch(`http://217.196.98.13:9000/user/${chatId}/`);
+                if (response.ok) {
+                    const userData = await response.json();
+                    setUserName(userData.username);
+                    setEnergy(userData.energy);
+                    setClickCount(userData.balance);
+                } else {
+                    setUserName('ELR1C180'); // Пользователь не найден
                 }
-            };
-    
-            fetchUserData();
+            } catch (error) {
+                console.error('Ошибка при получении данных пользователя:', error);
+            }
+        };
+
+        if (window.Telegram && window.Telegram.WebApp) {
+            const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id || 7193085118;
+            fetchUserData(chatId);
+        } else {
+            fetchUserData(7193085118); // Используйте chatId по умолчанию
         }
     }, []);
-    // const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 123; // Замените на реальное значение или оставьте 123 как заглушку
 
     const handleClick = async (event) => {
         if (energyCount <= 0) {
             setError('Недостаточно энергии');
             return;
         }
-    
+
         setClickCount(clickCount + 1);
         setEnergy(energyCount - 1);
         setIsClicked(true);
-    
+
         setCounter(counter + 1);
-    
+
         const boundingRect = event.currentTarget.getBoundingClientRect();
         const offsetX = event.clientX - boundingRect.left;
-        const offsetY = event.clientY - event.currentTarget.getBoundingClientRect().top;
-    
+        const offsetY = event.clientY - boundingRect.top;
+
         setClickPositions([...clickPositions, { x: offsetX, y: offsetY, id: counter }]);
-    
-        // Update user data on server
-        const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id || 123;
+
+        const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id || 7193085118;
         try {
             await fetch(`http://217.196.98.13:9000/user/${chatId}/update/`, {
                 method: 'PUT',
@@ -69,9 +68,9 @@ const Card = () => {
                 }),
             });
         } catch (error) {
-            console.error('Error updating user data:', error);
+            console.error('Ошибка при обновлении данных пользователя:', error);
         }
-    
+
         setTimeout(() => {
             setIsClicked(false);
         }, 500);
