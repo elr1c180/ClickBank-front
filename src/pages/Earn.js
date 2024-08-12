@@ -36,7 +36,7 @@ const Earn = () => {
                     </div>
                 </Link>
 
-                <Link to="">
+                <Link to="https://www.instagram.com/clickbankcoin?igsh=cW11ZTFkNno4ZWZk&utm_source=qr">
                 <div className={cl.igTask}>
                     <div className={cl.taskIcon}>
                         <img src={ig} alt="tg"/>
@@ -53,7 +53,7 @@ const Earn = () => {
                 </div>
                 </Link>
 
-                <Link to="">
+                <Link to="https://www.youtube.com/@clickbankcoin">
                 <div className={cl.ytTask}>
                     <div className={cl.taskIcon}>
                         <img src={yt} alt="tg"/>
@@ -87,7 +87,7 @@ const Earn = () => {
                 </div>
                 </Link>
                 
-                <Link to="">
+                <Link to="https://www.facebook.com/clickbankgame">
                 <div className={cl.facebookTask}>
                     <div className={cl.taskIcon}>
                         <img src={fb} alt="tg"/>
