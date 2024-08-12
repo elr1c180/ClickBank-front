@@ -13,15 +13,28 @@ const Card = () => {
     const [error, setError] = useState('');
 
     useEffect(() => {
-
         if (window.Telegram && window.Telegram.WebApp) {
-            const user = window.Telegram.WebApp.initDataUnsafe?.user;
-            if (user) {
-                setUserName(user.username);
-            } else{setUserName('ELR1C180')}
+            const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id || 123;
+    
+            const fetchUserData = async () => {
+                try {
+                    const response = await fetch(`http://217.196.98.13:9000/user/${chatId}/`);
+                    if (response.ok) {
+                        const userData = await response.json();
+                        setUserName(userData.username);
+                        setEnergy(userData.energy);
+                        setClickCount(userData.balance);
+                    } else {
+                        setUserName('ELR1C180');
+                    }
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                }
+            };
+    
+            fetchUserData();
         }
     }, []);
-
     // const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 123; // Замените на реальное значение или оставьте 123 как заглушку
 
     const handleClick = async (event) => {
@@ -29,21 +42,36 @@ const Card = () => {
             setError('Недостаточно энергии');
             return;
         }
-
+    
         setClickCount(clickCount + 1);
         setEnergy(energyCount - 1);
         setIsClicked(true);
-
+    
         setCounter(counter + 1);
-
+    
         const boundingRect = event.currentTarget.getBoundingClientRect();
         const offsetX = event.clientX - boundingRect.left;
-        const offsetY = event.clientY - boundingRect.top;
-
+        const offsetY = event.clientY - event.currentTarget.getBoundingClientRect().top;
+    
         setClickPositions([...clickPositions, { x: offsetX, y: offsetY, id: counter }]);
-
-        // Обновляем данные пользователя на сервере
-
+    
+        // Update user data on server
+        const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id || 123;
+        try {
+            await fetch(`http://217.196.98.13:9000/user/${chatId}/update/`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    balance: clickCount + 1,
+                    energy: energyCount - 1,
+                }),
+            });
+        } catch (error) {
+            console.error('Error updating user data:', error);
+        }
+    
         setTimeout(() => {
             setIsClicked(false);
         }, 500);
