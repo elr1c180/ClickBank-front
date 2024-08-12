@@ -22,19 +22,17 @@ const Card = () => {
                     setEnergy(userData.energy);
                     setClickCount(userData.balance);
                 } else {
+                    setError('Не удалось получить данные пользователя.');
                     setUserName('ELR1C180'); // Пользователь не найден
                 }
             } catch (error) {
+                setError('Ошибка при получении данных пользователя.');
                 console.error('Ошибка при получении данных пользователя:', error);
             }
         };
 
-        if (window.Telegram && window.Telegram.WebApp) {
-            const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id || 7193085118;
-            fetchUserData(chatId);
-        } else {
-            fetchUserData(7193085118); // Используйте chatId по умолчанию
-        }
+        const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 7193085118;
+        fetchUserData(chatId);
     }, []);
 
     const handleClick = async (event) => {
@@ -43,21 +41,24 @@ const Card = () => {
             return;
         }
 
-        setClickCount(clickCount + 1);
-        setEnergy(energyCount - 1);
+        setClickCount(prevClickCount => prevClickCount + 1);
+        setEnergy(prevEnergyCount => prevEnergyCount - 1);
         setIsClicked(true);
 
-        setCounter(counter + 1);
+        setCounter(prevCounter => prevCounter + 1);
 
         const boundingRect = event.currentTarget.getBoundingClientRect();
         const offsetX = event.clientX - boundingRect.left;
         const offsetY = event.clientY - boundingRect.top;
 
-        setClickPositions([...clickPositions, { x: offsetX, y: offsetY, id: counter }]);
+        setClickPositions(prevClickPositions => [
+            ...prevClickPositions,
+            { x: offsetX, y: offsetY, id: counter }
+        ]);
 
-        const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id || 7193085118;
+        const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 7193085118;
         try {
-            await fetch(`http://217.196.98.13:9000/user/${chatId}/update/`, {
+            const response = await fetch(`http://217.196.98.13:9000/user/${chatId}/update/`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,7 +68,12 @@ const Card = () => {
                     energy: energyCount - 1,
                 }),
             });
+
+            if (!response.ok) {
+                setError('Ошибка при обновлении данных пользователя.');
+            }
         } catch (error) {
+            setError('Ошибка при обновлении данных пользователя.');
             console.error('Ошибка при обновлении данных пользователя:', error);
         }
 
