@@ -7,7 +7,6 @@ const Card = () => {
     const [counter, setCounter] = useState(0);
     const [userName, setUserName] = useState('');
     const [clickCount, setClickCount] = useState(0);
-    const [clickPositions, setClickPositions] = useState([]);
     const [energyCount, setEnergy] = useState(1000);
     const [isClicked, setIsClicked] = useState(false);
     const [error, setError] = useState('');
