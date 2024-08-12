@@ -92,6 +92,7 @@
 
 .taskIcon > img {
     width: 47px;
+    margin-left: 10px;
 }
 
 .taskPool{
