@@ -87,7 +87,7 @@ const Earn = () => {
                 </div>
                 </Link>
                 
-                <Link to="https://www.facebook.com/clickbankgame">
+                <Link to="https://www.facebook.com/share/o9Fcz9moCBDgfMJj/?mibextid=LQQJ4d">
                 <div className={cl.facebookTask}>
                     <div className={cl.taskIcon}>
                         <img src={fb} alt="tg"/>
