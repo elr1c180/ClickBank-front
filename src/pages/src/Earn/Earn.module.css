@@ -82,7 +82,7 @@
     display:flex;
     padding: 5px 15px 0 0;
     border-radius: 10px;
-    background: linear-gradient(10deg, #5792a9, transparent);
+    background: linear-gradient(to right,#00c6ff,#0072ff); 
     margin-top: 5px;
 }
 
