@@ -95,13 +95,17 @@
     margin-left: 10px;
 }
 
+.taskTitle {
+    width: 80%;
+    margin-left: 9px;
+}
+
 .taskPool{
-    margin-left: auto;
     display: flex;
 }
 
 .taskPool > img {
     width: 24px;
     height: 24px;
-    margin-top: 12px;
+    margin-top: 13px;
 }
