@@ -30,7 +30,7 @@ const Earn = () => {
                     </div>
 
                     <div className={cl.taskPool}>
-                        <p>25.000</p>
+                        <p>25 000</p> 
                         <img src={logo} alt="price"/>
                     </div>
                     </div>
@@ -47,7 +47,7 @@ const Earn = () => {
                     </div>
 
                     <div className={cl.taskPool}>
-                        <p>25.000</p>
+                        <p>25 000</p>
                         <img src={logo} alt="price"/>
                     </div>
                 </div>
@@ -64,7 +64,7 @@ const Earn = () => {
                     </div>
 
                     <div className={cl.taskPool}>
-                        <p>25.000</p>
+                        <p>25 000</p>
                         <img src={logo} alt="price"/>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ const Earn = () => {
                     </div>
 
                     <div className={cl.taskPool}>
-                        <p>25.000</p>
+                        <p>25 000</p>
                         <img src={logo} alt="price"/>
                     </div>
                 </div>
@@ -98,7 +98,7 @@ const Earn = () => {
                     </div>
 
                     <div className={cl.taskPool}>
-                        <p>25.000</p>
+                        <p>25 000</p>
                         <img src={logo} alt="price"/>
                     </div>
                 </div>

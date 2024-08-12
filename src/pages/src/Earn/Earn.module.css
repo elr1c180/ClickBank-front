@@ -96,12 +96,17 @@
 }
 
 .taskTitle {
-    width: 80%;
-    margin-left: 9px;
+    width: 53%;
+    margin-left: 5px;
 }
 
 .taskPool{
     display: flex;
+    margin-left: auto;
+}
+
+.taskPool > p {
+    margin-right: 5px;
 }
 
 .taskPool > img {
