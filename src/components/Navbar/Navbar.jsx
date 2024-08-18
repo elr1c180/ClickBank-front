@@ -28,7 +28,7 @@ const Navbar = () => {
                 <span>Boost</span>
             </Link>
 
-            <Link to="/rewards/"  className={cl.navItem}>
+            <Link to="/Frens/"  className={cl.navItem}>
                 <div className={cl.icon}>   
                 <i class="fa-solid fa-user-group"></i>
                 </div>

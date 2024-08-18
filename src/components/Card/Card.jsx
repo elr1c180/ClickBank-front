@@ -15,7 +15,7 @@ const Card = () => {
     useEffect(() => {
         const fetchUserData = async (chatId) => {
             try {
-                const response = await fetch(`http://217.196.98.13:9000/user/${chatId}/`);
+                const response = await fetch(`https://bankclick-bot.ru//user/${chatId}/`);
                 if (response.ok) {
                     const userData = await response.json();
                     setUserName(userData.username);
