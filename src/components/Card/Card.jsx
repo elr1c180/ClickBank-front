@@ -41,6 +41,8 @@ const Card = () => {
             return;
         }
 
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('soft');
+
         setClickCount(prevClickCount => prevClickCount + 1);
         setEnergy(prevEnergyCount => prevEnergyCount - 1);
         setIsClicked(true);
