@@ -1,6 +1,7 @@
 import React from "react";
 import logo from '../components/Navbar/logohand.png'
 import cl from './src/Frens/Frens.module.css'
+import Navbar from "../components/Navbar/Navbar";
 
 
 const Frens = () => {
@@ -15,7 +16,9 @@ const Frens = () => {
                 <span class={cl.username}>elr1c180</span>
             </div>
         </div>
+        <Navbar/>
         </center>
+        
     )
 }
 
