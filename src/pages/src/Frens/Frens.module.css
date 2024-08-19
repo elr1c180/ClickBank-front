@@ -1,6 +1,4 @@
 
-
-
 .Airdrop {
     text-align: center;
     font-family: 'Lato', sans-serif;
@@ -11,8 +9,21 @@
     width: 184px;
 }
 
+.Share {
+    background: linear-gradient(to right, #1c92d2, #a6dce7);
+    color: white;
+    border: 0;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin: 5%;
+}
+
 .usernameContainer {
-    width: 80%;font-family: 'Lato', sans-serif;
+    width: 80%;
             padding: 15px;
             background-color: #ffffff;
             border-radius: 10px; /* Меньше скругленные края */

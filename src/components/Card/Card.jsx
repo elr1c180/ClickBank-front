@@ -41,6 +41,8 @@ const Card = () => {
             return;
         }
 
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('soft');
+
         setClickCount(prevClickCount => prevClickCount + 1);
         setEnergy(prevEnergyCount => prevEnergyCount - 1);
         setIsClicked(true);
@@ -84,7 +86,7 @@ const Card = () => {
 
     const formatNumber = (num) => {
         if (num === undefined || num === null || isNaN(num)) {
-            return '0000 0000 0000 0000'; // Значение по умолчанию, если num не определен
+            return `0000 0000 0000 0000`; // Значение по умолчанию, если num не определен
         }
         return `0000 0000 0000 ${num.toString().padStart(4, '0')}`;
     };
