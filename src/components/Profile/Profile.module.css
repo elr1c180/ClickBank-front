@@ -1,0 +1,58 @@
+.ProfileWrap {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 90%;
+}
+
+.profileSide {
+    display: flex;
+}
+
+.profileImg {
+    width: 20%;
+    margin-left: 10px;
+}
+
+.miniCard {
+    width: 12%!important;
+}
+
+.username {
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 5px 0 0px 0px; 
+}
+
+.details {
+    margin-left: 5px;
+}
+
+.levelSide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: 'Roboto', sans-serif;
+}
+
+.levelLabel {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.progressBar {
+    width: 150px;
+    height: 4px; /* Thinner progress bar */
+    background-color: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 30%; /* 3/10 progress */
+    height: 100%;
+    background: linear-gradient(to right, #979797, #4b4848);
+    border-radius: 2px;
+}
