@@ -24,13 +24,12 @@
 
 .usernameContainer {
     width: 80%;
-    font-family: 'Lato', sans-serif;
-    padding: 15px;
-    background-color: #ffffff;
-    border-radius: 10px; /* Меньше скругленные края */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
-    text-align: center;
-    margin-bottom: 10px;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 10px; /* Меньше скругленные края */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
+            text-align: center;
+            margin-bottom: 10px;
 }
 
 .username {

@@ -49,7 +49,9 @@ const Frens = () => {
             </div>
             <Navbar/>
         </div>
+        <Navbar/>
         </center>
+        
     )
 }
 
