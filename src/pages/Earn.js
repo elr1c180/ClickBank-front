@@ -8,8 +8,10 @@ import ig from './src/Earn/ig.png'
 import twitter from './src/Earn/x.png'
 import fb from './src/Earn/fb.png'
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Earn = () => {
+
     return(
         <div className={cl.EarnWrap}>
             <div className={cl.Header}>
