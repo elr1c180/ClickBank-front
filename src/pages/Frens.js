@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import logo from '../components/Navbar/logohand.png'; // Ensure correct path
-import cl from '../Frens/Frens.module.css'; // Ensure correct path
+import cl from './src/Frens/Frens.module.css'; // Ensure correct path
 import Navbar from "../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 
