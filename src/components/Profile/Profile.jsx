@@ -2,6 +2,7 @@ import React from "react";
 import cl from './Profile.module.css'
 import profile from './profile.svg'
 import card from '../Card/cardgray.svg'
+import { Link } from "react-router-dom";
 
 const Profile = (user) => {
 
@@ -13,7 +14,7 @@ const Profile = (user) => {
                 
                 <div className={cl.details}>
                     <p className={cl.username}>
-                        {user.username}
+                        <Link to="/ld/">{user.username}</Link>
                     </p>
                     <img className={cl.miniCard} src={card}/>
                 </div>

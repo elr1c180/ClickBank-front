@@ -31,7 +31,7 @@ const Card = () => {
             }
         };
 
-        const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 7193085118;
+        const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 991561880;
         fetchUserData(chatId);
     }, []);
 
@@ -58,7 +58,7 @@ const Card = () => {
             { x: offsetX, y: offsetY, id: counter }
         ]);
 
-        const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 7193085118;
+        const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 991561880;
         try {
             const response = await fetch(`https://bankclick-bot.ru/user/${chatId}/update/`, {
                 method: 'PUT',

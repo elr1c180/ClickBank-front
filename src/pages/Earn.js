@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar/Navbar";
 import logo from '../components/Navbar/logohand.png'
 import tg from './src/Earn/tg.png'
 import yt from './src/Earn/yt.png'
-import ig from './src/Earn/ig.png'
+import ig from './src/Earn/new_ig.PNG'
 import twitter from './src/Earn/x.png'
 import fb from './src/Earn/fb.png'
 import { Link } from "react-router-dom";

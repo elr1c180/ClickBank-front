@@ -7,7 +7,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <TonConnectUIProvider manifestUrl="https://bankclick-bot.ru/tonconnect-manifest.json">
+  <TonConnectUIProvider manifestUrl="https://pipipipi.ru/tonconnect-manifest.json">
     <App />
   </TonConnectUIProvider>
 );
