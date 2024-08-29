@@ -85,11 +85,15 @@ const Card = () => {
     };
 
     const formatNumber = (num) => {
-        if (num === undefined || num === null || isNaN(num)) {
-            return `0000 0000 0000 0000`; // Значение по умолчанию, если num не определен
-        }
-        return `0000 0000 0000 ${num.toString().padStart(4, '0')}`;
-    };
+    if (num === undefined || num === null || isNaN(num)) {
+        return `0000 0000 0000 0000`;
+    }
+
+    const paddedNumber = num.toString().padStart(16, '0');
+    
+    return paddedNumber.match(/.{1,4}/g).join(' ');
+};
+
 
     return (
         <div>
