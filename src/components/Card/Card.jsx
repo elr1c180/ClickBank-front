@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import cl from './Card.module.css';
 import card from './cardgray.svg';
 import energy from './energy.svg';
-
+import big_energy from './big_energy.svg';
+import tap from './tap.svg'
 const Card = () => {
     const [counter, setCounter] = useState(0);
     const [userName, setUserName] = useState('');
@@ -11,6 +12,7 @@ const Card = () => {
     const [energyCount, setEnergy] = useState(1000);
     const [isClicked, setIsClicked] = useState(false);
     const [error, setError] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchUserData = async (chatId) => {
@@ -23,7 +25,7 @@ const Card = () => {
                     setClickCount(userData.balance);
                 } else {
                     setError('Не удалось получить данные пользователя.');
-                    setUserName('ELR1C180'); // Пользователь не найден
+                    setUserName('ELR1C180');
                 }
             } catch (error) {
                 setError('Ошибка при получении данных пользователя.');
@@ -84,30 +86,26 @@ const Card = () => {
         }, 500);
     };
 
+    const handleEnergyClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     const formatNumber = (num) => {
-    if (num === undefined || num === null || isNaN(num)) {
-        return `0000 0000 0000 0000`;
-    }
+        if (num === undefined || num === null || isNaN(num)) {
+            return `0000 0000 0000 0000`;
+        }
 
-    const paddedNumber = num.toString().padStart(16, '0');
-    
-    return paddedNumber.match(/.{1,4}/g).join(' ');
-};
-
+        const paddedNumber = num.toString().padStart(16, '0');
+        return paddedNumber.match(/.{1,4}/g).join(' ');
+    };
 
     return (
         <div>
             <div className={cl.cardBlock}>
-                {/* Отображаем позиции кликов, если нужно */}
-                {/* {clickPositions.map((pos) => (
-                    <div
-                        key={pos.id}
-                        className={cl.clickCounter}
-                        style={{ top: `${pos.y}px`, left: `${pos.x}px` }}
-                    >
-                        +1
-                    </div>
-                ))} */}
                 <img
                     src={card}
                     alt="card"
@@ -121,11 +119,34 @@ const Card = () => {
                     <span className={cl.cardOwner}>{userName}</span>
                 </div>
             </div>
-            <div className={cl.energy}>
+            <div className={cl.energy} onClick={handleEnergyClick}>
                 <img src={energy} alt="energy" />
                 <p>{energyCount}</p>
             </div>
             {error && <p className={cl.error}>{error}</p>}
+
+            {/* Modal */}
+            {isModalOpen && (
+                <div className={cl.modalOverlay} onClick={closeModal}>
+                    <div className={cl.modalContent} onClick={(e) => e.stopPropagation()}>
+                        <img src={big_energy} alt="lightning" className={cl.modalIcon} />
+                        <div className={cl.modalButtons}>
+                            <button className={cl.boostButton}>Boost</button>
+                            <button className={cl.fullEnergyButton}>Full Energy</button>
+                        </div>
+                        <div className={cl.modalOptions}>
+                            <div className={cl.optionItem}>
+                                <img src={tap} alt="Multitap" className={cl.optionIcon} />
+                                <span>Multitap · 1lvl · 2 000</span>
+                            </div>
+                            <div className={cl.optionItem}>
+                                <img src={energy} alt="Energy" className={cl.optionIcon} />
+                                <span>Energy · 1lvl · 3 000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

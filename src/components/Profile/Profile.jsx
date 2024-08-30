@@ -14,7 +14,7 @@ const Profile = (user) => {
                 
                 <div className={cl.details}>
                     <p className={cl.username}>
-                        <Link to="/ld/">{user.username}</Link>
+                        {user.username}
                     </p>
                     <img className={cl.miniCard} src={card}/>
                 </div>
@@ -22,12 +22,14 @@ const Profile = (user) => {
                 
 
             </div>
-            <div className={cl.levelSide}>
-                <p className={cl.levelLabel}>Basic</p>
-                <div className={cl.progressBar}>
-                    <div className={cl.progress}></div>
+            <Link to="/ld/">
+                <div className={cl.levelSide}>
+                    <p className={cl.levelLabel}>Basic</p>
+                    <div className={cl.progressBar}>
+                        <div className={cl.progress}></div>
+                    </div>
                 </div>
-            </div>
+            </Link>
         </div>
     )
 }
