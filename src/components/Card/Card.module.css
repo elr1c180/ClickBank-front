@@ -65,6 +65,7 @@
 .cardClicked {
     width: 89%;
     transition: all  0.1s;
+    font-size: 12px;
 }
 
 .cardOwner {
