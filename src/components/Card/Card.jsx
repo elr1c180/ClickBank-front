@@ -132,7 +132,7 @@ const Card = () => {
                         <img src={big_energy} alt="lightning" className={cl.modalIcon} />
                         <div className={cl.modalButtons}>
                             <button className={cl.boostButton}>Boost</button>
-                            <button className={cl.fullEnergyButton}>Full Energy</button>
+                            <button className={cl.boostButton}>Full Energy</button>
                         </div>
                         <div className={cl.modalOptions}>
                             <div className={cl.optionItem}>

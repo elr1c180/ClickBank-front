@@ -85,7 +85,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
-    align-items: flex-end; /* Aligns modal at the bottom */
+    align-items: flex-end;
     justify-content: center;
     z-index: 1000;
 }
@@ -155,9 +155,9 @@
     text-align: center;
     color: white;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 22px;
     font-family: 'inter', sans-serif;
-    top: 30%;
+    top: 23%;
     position: fixed;
 }
 
@@ -184,21 +184,20 @@
 }
 
 .boostButton, .fullEnergyButton {
-    flex: 1;
-    padding: 10px;
-    margin: 0 5px;
     border: none;
-    border-radius: 5px;
-    color: white;
+    border-radius: 15px;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
     cursor: pointer;
+    flex: 1 1;
+    margin: 0 4px;
+    padding: 10px;
 }
 
 .boostButton {
-    background-color: orange;
-}
-
-.fullEnergyButton {
-    background-color: green;
+    background: linear-gradient(90deg, rgba(244,165,23,1) 0%, rgba(197,133,19,1) 100%);
 }
 
 .modalOptions {
@@ -211,7 +210,7 @@
     display: flex;
     align-items: center;
     background-color: #36A4EA;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .optionIcon {
