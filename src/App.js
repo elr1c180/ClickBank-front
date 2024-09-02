@@ -6,6 +6,7 @@ import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 import Earn from './pages/Earn';
 import Frens from './pages/Frens';
 import Leaders from './pages/LD';
+import Bonus from './pages/Bonus'
 
 function App() {
   const tele = window.Telegram.WebApp;
@@ -24,6 +25,7 @@ function App() {
             <Route path="/Airdrop" element={<Airdrop />} />
             <Route path="/Frens" element={<Frens/>}/>
             <Route path="/Earn" element={<Earn/>}/>
+            <Route path="/Bonus" element={<Bonus/>} />
             <Route path="/ld" element={<Leaders/>}/>
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>

@@ -21,7 +21,7 @@ const Navbar = () => {
                 <span>Earn</span>
             </Link>
 
-            <Link to="/rewards/"  className={cl.navItem}>
+            <Link to="/Bonus/"  className={cl.navItem}>
                 <div className={cl.icon}>   
                 <i class="fa-regular fa-calendar-days"></i>
                 </div>
