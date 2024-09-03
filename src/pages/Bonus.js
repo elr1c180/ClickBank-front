@@ -43,7 +43,6 @@ const Bonus = () => {
   );
 };
 
-// Стили для компонента
 const styles = {
   active: {
     flex: 1,
@@ -98,7 +97,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '10px 20px 30px 20px';
+    padding: '10px 20px 30px 20px',
     borderRadius: '15px',
     color: '#fff',
     height: '182px',
