@@ -1,6 +1,7 @@
 import React from "react";
 import cl from './src/ld/ld.module.css'
 import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import basic from './src/ld/cardgray 1.svg'
 import starter from './src/ld/card green 1 (3).svg'
 import advanced from './src/ld/card blue 1.svg'
@@ -17,6 +18,7 @@ const levels = [
   ];
 
 const Leaders = () => {
+  const navigate = useNavigate();
   const BackButton = window.Telegram.WebApp.BackButton;
   BackButton.show();
 

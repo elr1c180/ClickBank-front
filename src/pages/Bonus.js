@@ -7,6 +7,7 @@ import tg from './src/Bonus/tg.svg'
 import twt from './src/Bonus/х.svg'
 import tt from './src/Bonus/tt.svg'
 import facebook from './src/Bonus/fc.svg'
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import coin from '../components/Navbar/logohand.png';
 
 const platforms = [
@@ -19,7 +20,7 @@ const platforms = [
 ];
 
 const Bonus = () => {
-
+  const navigate = useNavigate();
   const BackButton = window.Telegram.WebApp.BackButton;
   BackButton.show();
 
