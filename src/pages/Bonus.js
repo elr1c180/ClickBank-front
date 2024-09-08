@@ -1,19 +1,31 @@
 import React from "react";
 import Profile from "../components/Profile/Profile";
-import Navbar from "../components/Navbar/Navbar";
+import { useEffect } from "react";
 import ig from './src/Bonus/ig.svg';
+import yt from './src/Bonus/yt.svg';
+import tg from './src/Bonus/tg.svg'
+import twt from './src/Bonus/х.svg'
+import tt from './src/Bonus/tt.svg'
+import facebook from './src/Bonus/fc.svg'
 import coin from '../components/Navbar/logohand.png';
 
 const platforms = [
-  { name: 'Instagram', earnPerHour: 800, bonus: 130, imgSrc: { ig }, bgColor: 'linear-gradient(to bottom, #E6E6E6, #EC4D59)' },
-  { name: 'YouTube', earnPerHour: 950, bonus: 150, imgSrc: 'youtube.png', bgColor: 'linear-gradient(to bottom, #E6E6E6, #F31616)' },
-  { name: 'Telegram', earnPerHour: 500, bonus: 130, imgSrc: 'telegram.png', bgColor: 'linear-gradient(to bottom, #E6E6E6, #1397D2)' },
-  { name: 'X', earnPerHour: 760, bonus: 170, imgSrc: 'x.png', bgColor: 'linear-gradient(to bottom, #2F4F4F, #6B6865)' },
-  { name: 'TikTok', earnPerHour: 800, bonus: 130, imgSrc: 'tiktok.png', bgColor: 'linear-gradient(to bottom, #E6E6E6, #8A2BE2)' },
-  { name: 'Facebook', earnPerHour: 950, bonus: 150, imgSrc: 'facebook.png', bgColor: 'linear-gradient(to bottom, #E6E6E6, #8b9dc3)' },
+  { name: 'Instagram', earnPerHour: 800, bonus: 130, imgSrc: ig , bgColor: 'linear-gradient(to bottom, #E6E6E6, #EC4D59)' },
+  { name: 'YouTube', earnPerHour: 950, bonus: 150, imgSrc: yt, bgColor: 'linear-gradient(to bottom, #E6E6E6, #F31616)' },
+  { name: 'Telegram', earnPerHour: 500, bonus: 130, imgSrc: tg, bgColor: 'linear-gradient(to bottom, #E6E6E6, #1397D2)' },
+  { name: 'X', earnPerHour: 760, bonus: 170, imgSrc: twt, bgColor: 'linear-gradient(to bottom, #2F4F4F, #6B6865)' },
+  { name: 'TikTok', earnPerHour: 800, bonus: 130, imgSrc: tt, bgColor: 'linear-gradient(to bottom, #E6E6E6, #8A2BE2)' },
+  { name: 'Facebook', earnPerHour: 950, bonus: 150, imgSrc: facebook, bgColor: 'linear-gradient(to bottom, #E6E6E6, #8b9dc3)' },
 ];
 
 const Bonus = () => {
+  useEffect(() => {
+    document.body.style.overflow = 'visible';
+
+    return () => {
+      document.body.style.overflow = 'hidden';
+    };
+  }, []);
   return (
     <div style={styles.container}>
       <Profile username={"elr1c180"} />
@@ -25,7 +37,7 @@ const Bonus = () => {
       <div style={styles.cardsContainer}>
         {platforms.map((platform, index) => (
           <div key={index} style={{ ...styles.card, background: platform.bgColor }}>
-            <img src={ig} alt={platform.name} style={styles.icon} />
+            <img src={platform.imgSrc} alt={platform.name} style={styles.icon} />
             <h2 style={styles.name}>{platform.name}</h2>
             <p style={styles.earnText}>Earn per hour: <strong>{platform.earnPerHour}</strong></p>
             <hr style={styles.divider} /> 
@@ -38,7 +50,6 @@ const Bonus = () => {
           </div>
         ))}
       </div>
-      <Navbar />
     </div>
   );
 };
