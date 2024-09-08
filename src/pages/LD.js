@@ -134,7 +134,7 @@ const Leaders = () => {
           color: '#090E05',
         }}
       >
-        Anton
+        elr1c180
       </span>
 
       <span
@@ -144,7 +144,7 @@ const Leaders = () => {
           marginLeft: '52px'
         }}
       >
-        +1 230 560
+        +0
       </span>
 
       <img style={{ width: '7%', marginBottom: '1px' }} src={clk} alt="Icon" />
