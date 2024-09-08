@@ -17,6 +17,16 @@ const levels = [
   ];
 
 const Leaders = () => {
+  const BackButton = window.Telegram.WebApp.BackButton;
+  BackButton.show();
+
+  BackButton.onClick(function() {
+      BackButton.hide();
+  });
+
+  window.Telegram.WebApp.onEvent('backButtonClicked', function() {
+      navigate('/main');
+  });
 
     const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
 

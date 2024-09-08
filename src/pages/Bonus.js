@@ -19,6 +19,17 @@ const platforms = [
 ];
 
 const Bonus = () => {
+
+  const BackButton = window.Telegram.WebApp.BackButton;
+  BackButton.show();
+
+  BackButton.onClick(function() {
+      BackButton.hide();
+  });
+
+  window.Telegram.WebApp.onEvent('backButtonClicked', function() {
+      navigate('/');
+  });
   useEffect(() => {
     document.body.style.overflow = 'visible';
 
