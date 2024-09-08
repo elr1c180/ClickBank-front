@@ -136,7 +136,7 @@ const Leaders = () => {
       </span>
 
       <img style={{ width: '7%', marginBottom: '1px' }} src={clk} alt="Icon" />
-    </div>
+    </div> 
 
     <div className={cl.Divider} style={{ marginLeft: 'auto', marginRight: 'auto' }}>
       <hr />
