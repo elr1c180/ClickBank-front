@@ -58,8 +58,11 @@
 }
 
 .User {
-    text-align: center;
-    font-weight: bold;
+    display: flex;
+    align-items: center; /* Vertically center items */
+    justify-content: center; /* Horizontally center items */
+    gap: 20px; /* Add some space between elements */
+    padding: 5px 0;
 }
 
 .Position {
@@ -67,10 +70,72 @@
     font-weight: bold;
     background: linear-gradient(to bottom, #EDA016 0%, #99693B 50%, #704E4D 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;   
+    -webkit-text-fill-color: transparent;
 }
 
 .Divider {
+    width: 90%;
+    margin: 5px auto; /* Center divider with spacing */
+    border: none;
+    border-top: 1px solid #ddd; /* Custom top border */
+}
+
+.UserRow {
+  display: flex;
+  justify-content: space-between; /* Space out content between left and right sections */
+  align-items: center; /* Vertically center items */
+  padding: 10px 20px; /* Add padding for consistent spacing */
+}
+
+.UserInfo {
+  display: flex;
+  gap: 10px; /* Space between position and username */
+  align-items: center; /* Vertically center position and username */
+}
+
+.Position {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #EDA016 0%, #99693B 50%, #704E4D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  min-width: 40px; /* Fixed width for consistent positioning */
+  text-align: left; /* Align text to the left */
+}
+
+.Username {
+  font-size: 28px;
+  color: #090E05;
+  text-align: left; /* Align text to the left */
+}
+
+.UserBalance {
+  display: flex;
+  align-items: center; /* Vertically center balance and image */
+  gap: 0px; /* Space between balance and image */
+}
+
+.Balance {
+  font-size: 24px;
+  color: #090E05;
+  margin-right: 10px; /* Consistent spacing on the right */
+}
+
+.UserImage {
+  width: 30px; /* Fixed width for consistent display */
+  margin-left: auto; /* Push image to the far right */
+}
+
+.Divider {
+  width: 90%;
+  margin: 5px auto;
+  border: none;
+  border-top: 1px solid #ddd; /* Customize divider */
+}
+
+
+
+/* .Divider {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -78,4 +143,4 @@
 
 .Divider > hr {
     margin: 3px;
-}
+} */

@@ -138,7 +138,7 @@ const Leaders = () => {
         <button onClick={handlePrev}>&lt; Prev</button>
         <button onClick={handleNext}>Next &gt;</button>
       </div> */}
-      <div className={cl.LeaderboardTable} style={{ textAlign: 'center' }}>
+<div className={cl.LeaderboardTable} style={{ textAlign: 'center' }}>
   <p style={{ color: '#555951' }}>Leaderboard:</p>
   <div
     className={cl.DataTable}
@@ -148,70 +148,26 @@ const Leaders = () => {
       padding: '10px 0',
     }}
   >
-    {/* <div
-      className={cl.User}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: '4px'
-      }}
-    >
-      <span className={cl.Position} style={{ fontSize: '20px', marginRight:'10px' }}>1</span>
-
-      <span
-        style={{
-          fontSize: '28px',
-          color: '#090E05',
-        }}
-      >
-        elr1c180
-      </span>
-
-      <span
-        style={{
-          fontSize: '24px',
-          color: '#090E05',
-          marginLeft: '52px'
-        }}
-      >
-        +0
-      </span>
-
-      <img style={{ width: '7%', marginBottom: '1px' }} src={clk} alt="Icon" />
-    </div>  
-
-    <div className={cl.Divider} style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-      <hr />
-    </div> */}
     {users.map((user, index) => (
-        <div
-          key={user.id}
-          className={cl.user}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '4px',
-          }}
-        >
-          <span className={cl.position} style={{ fontSize: '20px', marginRight: '10px' }}>
-            {index + 1}
-          </span>
-
-          <span style={{ fontSize: '28px', color: '#090E05' }}>
-            {user.username}
-          </span>
-
-          <span style={{ fontSize: '24px', color: '#090E05', marginLeft: '52px' }}>
-            {user.total_per_hour}
-          </span>
-
-          <img style={{ width: '7%', marginBottom: '1px' }} src="path_to_icon" alt="Icon" />
+      <React.Fragment key={user.id}>
+        <div className={cl.UserRow}>
+          <div className={cl.UserInfo}>
+            <span className={cl.Position}>{index + 1}</span>
+            <span className={cl.Username}>{user.username}</span>
+          </div>
+          <div className={cl.UserBalance}>
+            <span className={cl.Balance}>{user.total_per_hour}</span>
+            <img className={cl.UserImage} src={clk} alt="Icon" />
+          </div>
         </div>
-      ))}
+        <hr className={cl.Divider} />
+      </React.Fragment>
+    ))}
   </div>
 </div>
+
+
+
 
     </div>
   );
