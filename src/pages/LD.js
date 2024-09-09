@@ -18,6 +18,26 @@ const levels = [
   ];
 
 const Leaders = () => {
+
+  const [balance, setBalance] = useState('')
+
+  useEffect(() => {
+    const fetchUserData = async (chatId) => {
+        try {
+            const response = await fetch(`https://bankclick-bot.ru/user/${chatId}/`);
+            if (response.ok) {
+                const userData = await response.json();
+                setBalance(userData.balance);
+            } else {
+            }
+        } catch (error) {
+            console.error('Ошибка при получении данных пользователя:', error);
+        }
+    };
+
+    const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 991561880;
+    fetchUserData(chatId);
+}, []);
   const navigate = useNavigate();
   const BackButton = window.Telegram.WebApp.BackButton;
   BackButton.show();
@@ -99,7 +119,7 @@ const Leaders = () => {
               borderRadius: '2px'
             }}></div>
           </div>
-          <h3 className={cl.Balance} style={{ color: currentLevel.scoreColor }}>189k/500k</h3>
+          <h3 className={cl.Balance} style={{ color: currentLevel.scoreColor }}>{balance}/500k</h3>
         </div>
       {/* <h1>{currentLevel.name}</h1>
       <p>{currentLevel.content}</p>
