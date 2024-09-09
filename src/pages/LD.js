@@ -77,16 +77,16 @@ const Leaders = () => {
   
     const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    
-    fetch.get('https://bankclick-bot.ru/user-ranking/')
-      .then(response => {
-        setUsers(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching user data:', error);
-      });
-  }, []);
+    useEffect(() => {
+      fetch('https://bankclick-bot.ru/user-ranking/')
+        .then(response => response.json())  // Convert the response to JSON
+        .then(data => {
+          setUsers(data);  // Update the state with the fetched data
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error);  // Handle errors
+        });
+    }, []);
 
   return (
     <div
