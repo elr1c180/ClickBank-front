@@ -75,7 +75,18 @@ const Leaders = () => {
 
     const currentLevel = levels[currentLevelIndex];
   
+    const [users, setUsers] = useState([]);
 
+  useEffect(() => {
+    
+    fetch.get('https://bankclick-bot.ru/user-ranking/')
+      .then(response => {
+        setUsers(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+  }, []);
 
   return (
     <div
@@ -137,7 +148,7 @@ const Leaders = () => {
       padding: '10px 0',
     }}
   >
-    <div
+    {/* <div
       className={cl.User}
       style={{
         display: 'flex',
@@ -172,7 +183,33 @@ const Leaders = () => {
 
     <div className={cl.Divider} style={{ marginLeft: 'auto', marginRight: 'auto' }}>
       <hr />
-    </div>
+    </div> */}
+    {users.map((user, index) => (
+        <div
+          key={user.id}
+          className={cl.user}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: '4px',
+          }}
+        >
+          <span className={cl.position} style={{ fontSize: '20px', marginRight: '10px' }}>
+            {index + 1}
+          </span>
+
+          <span style={{ fontSize: '28px', color: '#090E05' }}>
+            {user.username}
+          </span>
+
+          <span style={{ fontSize: '24px', color: '#090E05', marginLeft: '52px' }}>
+            {user.total_per_hour}
+          </span>
+
+          <img style={{ width: '7%', marginBottom: '1px' }} src="path_to_icon" alt="Icon" />
+        </div>
+      ))}
   </div>
 </div>
 
