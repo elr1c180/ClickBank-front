@@ -84,7 +84,7 @@
   display: flex;
   justify-content: space-between; /* Space out content between left and right sections */
   align-items: center; /* Vertically center items */
-  padding: 10px 20px; /* Add padding for consistent spacing */
+  padding: 0px 20px; /* Add padding for consistent spacing */
 }
 
 .UserInfo {
@@ -107,6 +107,8 @@
   font-size: 28px;
   color: #090E05;
   text-align: left; /* Align text to the left */
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
 }
 
 .UserBalance {
@@ -118,12 +120,12 @@
 .Balance {
   font-size: 24px;
   color: #090E05;
-  margin-right: 10px; /* Consistent spacing on the right */
+  margin-right: 10px; 
 }
 
 .UserImage {
-  width: 30px; /* Fixed width for consistent display */
-  margin-left: auto; /* Push image to the far right */
+  width: 30px;
+  margin-left: auto; 
 }
 
 .Divider {
