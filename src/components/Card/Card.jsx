@@ -4,6 +4,7 @@ import card from './cardgray.svg';
 import energy from './energy.svg';
 import big_energy from './big_energy.svg';
 import tap from './tap.svg'
+
 const Card = () => {
     const [counter, setCounter] = useState(0);
     const [userName, setUserName] = useState('');
@@ -13,29 +14,6 @@ const Card = () => {
     const [isClicked, setIsClicked] = useState(false);
     const [error, setError] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    useEffect(() => {
-        const fetchUserData = async (chatId) => {
-            try {
-                const response = await fetch(`https://bankclick-bot.ru/user/${chatId}/`);
-                if (response.ok) {
-                    const userData = await response.json();
-                    setUserName(userData.username);
-                    setEnergy(userData.energy);
-                    setClickCount(userData.balance);
-                } else {
-                    setError('Не удалось получить данные пользователя.');
-                    setUserName('ELR1C180');
-                }
-            } catch (error) {
-                setError('Ошибка при получении данных пользователя.');
-                console.error('Ошибка при получении данных пользователя:', error);
-            }
-        };
-
-        const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 991561880;
-        fetchUserData(chatId);
-    }, []);
 
     const handleClick = async (event) => {
         if (energyCount <= 0) {
@@ -125,7 +103,6 @@ const Card = () => {
             </div>
             {error && <p className={cl.error}>{error}</p>}
 
-            {/* Modal */}
             {isModalOpen && (
                 <div className={cl.modalOverlay} onClick={closeModal}>
                     <div className={cl.modalContent} onClick={(e) => e.stopPropagation()}>

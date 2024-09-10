@@ -10,8 +10,10 @@ import Profile from "../components/Profile/Profile";
 const Exchange = () => {
     const [username, setUsername] = useState('');
     const [platform, setPlatform] = useState('');
+    const [userData, setUserData] = useState('');
 
     useEffect(() => {
+
         if (window.Telegram && window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe?.user;
             if (user)  {
@@ -22,13 +24,30 @@ const Exchange = () => {
                 setUsername('ELR1C180')
             }
         }
-    }, []);
+        }, []);
+
+        const fetchUserData = async (chatId) => {
+            try {
+                const response = await fetch(`https://bankclick-bot.ru/user/${chatId}/`);
+                if (response.ok) {
+                    const userData = await response.json();
+                    setUserData(userData)
+                } else {
+
+                }
+            } catch (error) {
+                console.error('Ошибка при получении данных пользователя:', error);
+            }
+        };
+
+        const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 991561880;
+        fetchUserData(chatId);
 
     return(
         platform !== 'tdesktop' && platform !== 'macos' ? (
         <div>
             <Profile username={username} />
-            <Card />
+            <Card userdata={userData} />
             <Navbar/>
         </div>
         )  : (
