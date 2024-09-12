@@ -136,7 +136,6 @@ const styles = {
     padding: "10px 20px 30px 20px",
     borderRadius: "15px",
     color: "#fff",
-    height: "182px",
     textAlign: "center",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
     position: "relative",
