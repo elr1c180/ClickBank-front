@@ -126,7 +126,6 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
     gap: "20px",
-    width: "100%",
     maxWidth: "500px",
   },
   card: {
