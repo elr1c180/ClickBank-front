@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Profile from "../components/Profile/Profile";
 import { useEffect } from "react";
 import ig from './src/Bonus/ig.svg';
@@ -20,6 +20,26 @@ const platforms = [
 ];
 
 const Bonus = () => {
+
+  const [cards, setCards] = useState('')
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const response = await fetch(`https://bankclick-bot.ru/get_cards/`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setCards(cards)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCards();
+  }, []);
+
   const navigate = useNavigate();
   const BackButton = window.Telegram.WebApp.BackButton;
   BackButton.show();
@@ -47,16 +67,16 @@ const Bonus = () => {
         <button style={styles.headerButton}>Geography</button>
       </div>
       <div style={styles.cardsContainer}>
-        {platforms.map((platform, index) => (
-          <div key={index} style={{ ...styles.card, background: platform.bgColor }}>
-            <img src={platform.imgSrc} alt={platform.name} style={styles.icon} />
-            <h2 style={styles.name}>{platform.name}</h2>
-            <p style={styles.earnText}>Earn per hour: <strong>{platform.earnPerHour}</strong></p>
+        {cards.map((cards, index) => (
+          <div key={index} style={{ ...styles.card, background: `linear-gradient(to bottom, #${cards.first_gradient}, #${cards.second_gradient})` }}>
+            <img src={cards.img} alt={cards.name} style={styles.icon} />
+            <h2 style={styles.name}>{cards.name}</h2>
+            <p style={styles.earnText}>Earn per hour: <strong>{cards.earnPerHour}</strong></p>
             <hr style={styles.divider} /> 
             <div style={styles.bottom}>
               <span style={styles.level}>1lvl</span>
               <span style={styles.coins}>
-                {platform.earnPerHour} <img src={coin} alt="coin" style={styles.coinIcon} />
+                {cards.earnPerHour} <img src={coin} alt="coin" style={styles.coinIcon} />
               </span>
             </div>
           </div>
