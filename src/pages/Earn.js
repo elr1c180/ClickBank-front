@@ -12,7 +12,7 @@ const Earn = () => {
         if (window.Telegram && window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe?.user;
             if (user)  {
-                setChatId(user.id)
+                setChatId(user)
             }
             else {
                 setChatId('991561880')
@@ -53,7 +53,7 @@ const Earn = () => {
         <div className={cl.EarnWrap}>
             <div className={cl.Header}>
                 <img src={logo} alt="logo" />
-                <h2>Start Earning{user}</h2>
+                <h2>Start Earning{chatId}</h2>
             </div>
             <div className={cl.Tasks}>
                 <h4>Active Tasks</h4>
