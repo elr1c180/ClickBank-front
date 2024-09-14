@@ -12,7 +12,7 @@ const Earn = () => {
         if (window.Telegram && window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe?.user;
             if (user)  {
-                setChatId(user)
+                setChatId(user.id)
             }
             else {
                 setChatId('991561880')
@@ -31,7 +31,7 @@ const Earn = () => {
         fetchTasks();
     }, []);
 
-    const handleTaskCompletion = async (taskId, earn) => {
+    const handleTaskCompletion = async (chatId, taskId, earn) => {
         try {
             const response = await fetch(`https://bankclick-bot.ru/complete_task/${chatId}/${taskId}`, {
                 method: 'POST',
