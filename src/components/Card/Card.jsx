@@ -3,7 +3,7 @@ import cl from './Card.module.css';
 import card from './cardgray.svg';
 import energy from './energy.svg';
 import big_energy from './big_energy.svg';
-import tap from './tap.svg'
+import tap from './tap.svg';
 
 const Card = () => {
     const [counter, setCounter] = useState(0);
@@ -15,36 +15,45 @@ const Card = () => {
     const [error, setError] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const fetchUserData = async (chatId) => {
-        try {
-            const response = await fetch(`https://bankclick-bot.ru/user/${chatId}/`);
-            if (response.ok) {
-                const userData = await response.json();
-            } else {
-
-            }
-        } catch (error) {
-            console.error('Ошибка при получении данных пользователя:', error);
-        }
-    };
-
     const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 991561880;
-    fetchUserData(chatId);
-    
+
+    // Получаем данные пользователя при первом рендере
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await fetch(`https://bankclick-bot.ru/user/${chatId}/`);
+                if (response.ok) {
+                    const userData = await response.json();
+                    setUserName(userData.username);
+                    setClickCount(userData.balance);
+                    setEnergy(userData.energy);
+                } else {
+                    console.error('Ошибка при получении данных пользователя.');
+                }
+            } catch (error) {
+                console.error('Ошибка при получении данных пользователя:', error);
+            }
+        };
+
+        fetchUserData();
+    }, [chatId]);
+
+    // Обработчик клика по карте
     const handleClick = async (event) => {
         if (energyCount <= 0) {
             setError('Недостаточно энергии');
             return;
         }
 
+        // Обратная связь при клике
         window.Telegram.WebApp.HapticFeedback.impactOccurred('soft');
 
         setClickCount(prevClickCount => prevClickCount + 1);
         setEnergy(prevEnergyCount => prevEnergyCount - 1);
         setIsClicked(true);
-
         setCounter(prevCounter => prevCounter + 1);
 
+        // Позиции кликов для визуализации
         const boundingRect = event.currentTarget.getBoundingClientRect();
         const offsetX = event.clientX - boundingRect.left;
         const offsetY = event.clientY - boundingRect.top;
@@ -54,7 +63,7 @@ const Card = () => {
             { x: offsetX, y: offsetY, id: counter }
         ]);
 
-        const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 991561880;
+        // Обновление данных на сервере
         try {
             const response = await fetch(`https://bankclick-bot.ru/user/${chatId}/update/`, {
                 method: 'PUT',
@@ -80,14 +89,17 @@ const Card = () => {
         }, 500);
     };
 
+    // Открытие модального окна
     const handleEnergyClick = () => {
         setIsModalOpen(true);
     };
 
+    // Закрытие модального окна
     const closeModal = () => {
         setIsModalOpen(false);
     };
 
+    // Форматирование номера
     const formatNumber = (num) => {
         if (num === undefined || num === null || isNaN(num)) {
             return `0000 0000 0000 0000`;
