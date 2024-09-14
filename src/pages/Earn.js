@@ -18,7 +18,7 @@ const Earn = () => {
                 setChatId('991561880')
             }
         }
-        const fetchTasks = async () => {
+        const fetchTasks = async (chatId) => {
             try {
                 const response = await fetch(`https://bankclick-bot.ru/get_tasks/${chatId}`);
                 const data = await response.json();
@@ -28,7 +28,7 @@ const Earn = () => {
             }
         };
 
-        fetchTasks();
+        fetchTasks(chatId);
     }, []);
 
     const handleTaskCompletion = async (chatId, taskId, earn) => {
