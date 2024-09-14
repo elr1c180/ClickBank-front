@@ -2,21 +2,25 @@ import React, { useEffect, useState } from "react";
 import cl from './src/Earn/Earn.module.css';
 import Navbar from "../components/Navbar/Navbar";
 import logo from '../components/Navbar/logohand.png';
-import tg from './src/Earn/tg.png';
-import yt from './src/Earn/yt.png';
-import ig from './src/Earn/new_ig.PNG';
-import twitter from './src/Earn/x.png';
-import fb from './src/Earn/fb.png';
 import { Link } from "react-router-dom";
 
 const Earn = () => {
     const [tasks, setTasks] = useState([]);
-
+    const [balance, setBalance] = useState(0); // Добавляем состояние для баланса
+    const [chatId, setChatId] = useState('')
     useEffect(() => {
-        // Подгружаем задания из API
+        if (window.Telegram && window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe?.user;
+            if (user)  {
+                setChatId(user.id)
+            }
+            else {
+                setChatId('991561880')
+            }
+        }
         const fetchTasks = async () => {
             try {
-                const response = await fetch('https://bankclick-bot.ru/get_tasks/991561880');
+                const response = await fetch(`https://bankclick-bot.ru/get_tasks/${chatId}`);
                 const data = await response.json();
                 setTasks(data);
             } catch (error) {
@@ -26,6 +30,24 @@ const Earn = () => {
 
         fetchTasks();
     }, []);
+
+    const handleTaskCompletion = async (taskId, earn) => {
+        try {
+            const response = await fetch(`https://bankclick-bot.ru/complete_task/${chatId}/${taskId}`, {
+                method: 'POST',
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                setBalance(balance + earn); 
+            } else {
+                console.error("Error completing task:", result.error);
+            }
+        } catch (error) {
+            console.error("Error completing task:", error);
+        }
+    };
+
 
     return (
         <div className={cl.EarnWrap}>
@@ -37,7 +59,12 @@ const Earn = () => {
                 <h4>Active Tasks</h4>
 
                 {tasks.length > 0 ? tasks.map(task => (
-                    <Link key={task.id} to={task.url} style={{ background: `background: linear-gradient(270deg, ${task.left_gradient} 4%, ${task.right_gradient} 86%);` }}>
+                    <Link 
+                        key={task.id} 
+                        to={task.url} 
+                        style={{ background: `linear-gradient(270deg, ${task.left_gradient} 4%, ${task.right_gradient} 86%)` }}
+                        onClick={() => handleTaskCompletion(task.id, task.earn)} // Обработка завершения задания
+                    >
                         <div className={cl.Task}>
                             <div className={cl.taskIcon}>
                                 <img src={`https://bankclick-bot.ru${task.icon}` || logo} alt={task.title} />
