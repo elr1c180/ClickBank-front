@@ -15,6 +15,22 @@ const Card = () => {
     const [error, setError] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const fetchUserData = async (chatId) => {
+        try {
+            const response = await fetch(`https://bankclick-bot.ru/user/${chatId}/`);
+            if (response.ok) {
+                const userData = await response.json();
+            } else {
+
+            }
+        } catch (error) {
+            console.error('Ошибка при получении данных пользователя:', error);
+        }
+    };
+
+    const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 991561880;
+    fetchUserData(chatId);
+    
     const handleClick = async (event) => {
         if (energyCount <= 0) {
             setError('Недостаточно энергии');
