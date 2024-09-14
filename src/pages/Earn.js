@@ -7,17 +7,19 @@ import { Link } from "react-router-dom";
 const Earn = () => {
     const [tasks, setTasks] = useState([]);
     const [balance, setBalance] = useState(0); // Добавляем состояние для баланса
-    const [chatId, setChatId] = useState('')
+    const [chatId, setChatId] = useState(''); // Состояние для chatId
+
     useEffect(() => {
+        // Получение chatId из Telegram WebApp или установка значения по умолчанию
         if (window.Telegram && window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe?.user;
-            if (user)  {
-                setChatId(user.id)
-            }
-            else {
-                setChatId('991561880')
+            if (user) {
+                setChatId(user.id);
+            } else {
+                setChatId('991561880');
             }
         }
+
         const fetchTasks = async (chatId) => {
             try {
                 const response = await fetch(`https://bankclick-bot.ru/get_tasks/${chatId}`);
@@ -29,7 +31,7 @@ const Earn = () => {
         };
 
         fetchTasks(chatId);
-    }, []);
+    }, [chatId]); // Обновление при изменении chatId
 
     const handleTaskCompletion = async (chatId, taskId, earn) => {
         try {
@@ -39,7 +41,7 @@ const Earn = () => {
 
             const result = await response.json();
             if (response.ok) {
-                setBalance(balance + earn); 
+                setBalance(balance + earn); // Обновление баланса после выполнения задания
             } else {
                 console.error("Error completing task:", result.error);
             }
@@ -47,7 +49,6 @@ const Earn = () => {
             console.error("Error completing task:", error);
         }
     };
-
 
     return (
         <div className={cl.EarnWrap}>
@@ -63,7 +64,7 @@ const Earn = () => {
                         key={task.id} 
                         to={task.url} 
                         style={{ background: `linear-gradient(270deg, ${task.left_gradient} 4%, ${task.right_gradient} 86%)` }}
-                        onClick={() => handleTaskCompletion(task.id, task.earn)} // Обработка завершения задания
+                        onClick={() => handleTaskCompletion(chatId, task.id, task.earn)} // Передаем chatId, taskId, и earn
                     >
                         <div className={cl.Task}>
                             <div className={cl.taskIcon}>
