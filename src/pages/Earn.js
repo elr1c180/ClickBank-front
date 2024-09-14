@@ -53,7 +53,7 @@ const Earn = () => {
         <div className={cl.EarnWrap}>
             <div className={cl.Header}>
                 <img src={logo} alt="logo" />
-                <h2>Start Earning{chatId}</h2>
+                <h2>Start Earning</h2>
             </div>
             <div className={cl.Tasks}>
                 <h4>Active Tasks</h4>
