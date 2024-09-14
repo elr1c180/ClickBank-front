@@ -63,10 +63,9 @@ const Earn = () => {
                     <Link 
                         key={task.id} 
                         to={task.url} 
-                        style={{ background: `linear-gradient(270deg, ${task.left_gradient} 4%, ${task.right_gradient} 86%)` }}
                         onClick={() => handleTaskCompletion(chatId, task.id, task.earn)} // Передаем chatId, taskId, и earn
                     >
-                        <div className={cl.Task}>
+                        <div className={cl.Task} style={{ background: `linear-gradient(270deg, ${task.left_gradient} 60%, ${task.right_gradient} 100%)` }}>
                             <div className={cl.taskIcon}>
                                 <img src={`https://bankclick-bot.ru${task.icon}` || logo} alt={task.title} />
                             </div>
