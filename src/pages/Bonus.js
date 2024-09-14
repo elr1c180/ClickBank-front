@@ -78,7 +78,7 @@ const Bonus = () => {
               background: `linear-gradient(to bottom, #${card.first_gradient}, #${card.second_gradient})`,
             }}
           >
-            <img src={card.img} alt={card.title} style={styles.icon} />
+            <img src={`https://bankclick-bot.ru${card.img}`} alt={card.title} style={styles.icon} />
             <h2 style={styles.name}>{card.title}</h2>
             <p style={styles.earnText}>
               Earn per hour: <strong>{card.earn_per_hour}</strong>
