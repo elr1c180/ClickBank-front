@@ -5,6 +5,7 @@ import coin from "../components/Navbar/logohand.png";
 
 const Bonus = () => {
   const [cards, setCards] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(1); // Default to "Marketing"
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -14,7 +15,7 @@ const Bonus = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setCards(data); // Corrected this line to set the fetched data
+        setCards(data);
       } catch (error) {
         console.error(error);
       }
@@ -43,16 +44,33 @@ const Bonus = () => {
     };
   }, []);
 
+  const filteredCards = cards.filter((card) => card.category === String(selectedCategory));
+
   return (
     <div style={styles.container}>
       <Profile username={"elr1c180"} />
       <div style={styles.header}>
-        <button style={styles.active}>PR agency</button>
-        <button style={styles.headerButton}>Products</button>
-        <button style={styles.headerButton}>Geography</button>
+        <button
+          style={selectedCategory === 1 ? styles.active : styles.headerButton}
+          onClick={() => setSelectedCategory(1)}
+        >
+          Marketing
+        </button>
+        <button
+          style={selectedCategory === 2 ? styles.active : styles.headerButton}
+          onClick={() => setSelectedCategory(2)}
+        >
+          System
+        </button>
+        <button
+          style={selectedCategory === 3 ? styles.active : styles.headerButton}
+          onClick={() => setSelectedCategory(3)}
+        >
+          Geography
+        </button>
       </div>
       <div style={styles.cardsContainer}>
-        {cards.map((card, index) => (
+        {filteredCards.map((card, index) => (
           <div
             key={index}
             style={{
