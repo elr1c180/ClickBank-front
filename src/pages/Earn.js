@@ -37,7 +37,7 @@ const Earn = () => {
                 <h4>Active Tasks</h4>
 
                 {tasks.length > 0 ? tasks.map(task => (
-                    <Link key={task.id} to={task.url} style={{ background: `background: linear-gradient(270deg, ${task.first_gradient} 4%, ${task.second_gradient} 86%);` }}>
+                    <Link key={task.id} to={task.url} style={{ background: `background: linear-gradient(270deg, ${task.left_gradient} 4%, ${task.right_gradient} 86%);` }}>
                         <div className={cl.Task}>
                             <div className={cl.taskIcon}>
                                 <img src={`https://bankclick-bot.ru${task.icon}` || logo} alt={task.title} />
