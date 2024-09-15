@@ -86,6 +86,9 @@ const Leaders = () => {
     const currentLevel = levels[currentLevelIndex];
     const currentLevelInfo = levelInfo[currentLevel.id] || { max_balance: 0 }; // Set default value if undefined
 
+    // Filter users by the current level
+    const filteredUsers = users.filter(user => user.level === currentLevel.id);
+
     useEffect(() => {
         document.body.style.margin = '0';
         document.body.style.overflow = 'visible';
@@ -147,7 +150,7 @@ const Leaders = () => {
             <div className={cl.LeaderboardTable} style={{ textAlign: 'center' }}>
                 <p style={{ color: '#555951' }}>Leaderboard:</p>
                 <div className={cl.DataTable} style={{ border: '1px solid black', borderRadius: '15px', padding: '10px 0' }}>
-                    {users.map((user, index) => (
+                    {filteredUsers.map((user, index) => (
                         <React.Fragment key={user.id}>
                             <div className={cl.UserRow}>
                                 <div className={cl.UserInfo}>
