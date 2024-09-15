@@ -9,20 +9,19 @@ import elite from './src/ld/card purple 1.svg';
 import clk from '../components/Navbar/logohand.png';
 
 const levels = [
-    { name: 'Basic', boxShadow: "0px 61px 199px 12px rgba(100,100,100,0.75) inset", titleColor: '#2E3528', levelCard: basic, barColor: 'linear-gradient(to right, #979797, #4b4848)', scoreColor: '#343532', maxBalance: 500000 },
-    { name: 'Starter', boxShadow: '0px 61px 199px 12px rgba(117,173,61,0.41) inset', titleColor: '#2E3528', levelCard: starter, barColor: 'linear-gradient(270deg, rgba(175,221,128,1) 4%, rgba(67,129,53,1) 86%)', scoreColor: '#343532', maxBalance: 1000000 },
-    { name: 'Advanced', boxShadow: '0px 61px 199px 12px rgba(20,141,206,0.41) inset', titleColor: '#231A1A', levelCard: advanced, barColor: 'linear-gradient(270deg, rgba(121,196,234,1) 4%, rgba(25,76,122,1) 86%)', scoreColor: '#232526', maxBalance: 2000000 },
-    { name: 'Premium', boxShadow: '0px 61px 199px 12px rgba(193,42,34,0.41) inset', titleColor: '#B7B7B7', levelCard: premium, barColor: 'linear-gradient(270deg, rgba(233,132,127,1) 4%, rgba(164,55,49,1) 67%, rgba(146,42,42,1) 86%)', scoreColor: '#232526', maxBalance: 4000000 },
-    { name: 'Elite', boxShadow: '0px 61px 199px 12px rgba(176,44,120,0.41) inset', titleColor: '#B7B7B7', levelCard: elite, barColor: 'linear-gradient(270deg, rgba(178,41,121,1) 4%, rgba(60,23,45,1) 86%)', scoreColor: '#232526', maxBalance: 10000000 },
+    { id: 1, name: 'Basic', boxShadow: "0px 61px 199px 12px rgba(100,100,100,0.75) inset", titleColor: '#2E3528', levelCard: basic, barColor: 'linear-gradient(to right, #979797, #4b4848)', scoreColor: '#343532' },
+    { id: 2, name: 'Starter', boxShadow: '0px 61px 199px 12px rgba(117,173,61,0.41) inset', titleColor: '#2E3528', levelCard: starter, barColor: 'linear-gradient(270deg, rgba(175,221,128,1) 4%, rgba(67,129,53,1) 86%)', scoreColor: '#343532' },
+    { id: 3, name: 'Advanced', boxShadow: '0px 61px 199px 12px rgba(20,141,206,0.41) inset', titleColor: '#231A1A', levelCard: advanced, barColor: 'linear-gradient(270deg, rgba(121,196,234,1) 4%, rgba(25,76,122,1) 86%)', scoreColor: '#232526' },
+    { id: 4, name: 'Premium', boxShadow: '0px 61px 199px 12px rgba(193,42,34,0.41) inset', titleColor: '#B7B7B7', levelCard: premium, barColor: 'linear-gradient(270deg, rgba(233,132,127,1) 4%, rgba(164,55,49,1) 67%, rgba(146,42,42,1) 86%)', scoreColor: '#232526' },
+    { id: 5, name: 'Elite', boxShadow: '0px 61px 199px 12px rgba(176,44,120,0.41) inset', titleColor: '#B7B7B7', levelCard: elite, barColor: 'linear-gradient(270deg, rgba(178,41,121,1) 4%, rgba(60,23,45,1) 86%)', scoreColor: '#232526' },
 ];
 
 const Leaders = () => {
     const [levelProcent, setLevelProcent] = useState('');
     const [balance, setBalance] = useState('');
-    const [currentUserLevel, setCurrentUserLevel] = useState(null);
     const [users, setUsers] = useState([]);
     const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
-
+    const [levelInfo, setLevelInfo] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,18 +30,26 @@ const Leaders = () => {
                 const response = await fetch(`https://bankclick-bot.ru/user/${chatId}/`);
                 if (response.ok) {
                     const userData = await response.json();
-                    const checkLevel = await fetch(`https://bankclick-bot.ru/level_info/${userData.level}`);
-                    const userLevel = await checkLevel.json();
-                    setCurrentUserLevel(userLevel);
+                    const levelResponse = await fetch(`https://bankclick-bot.ru/level_info/${userData.level}`);
+                    const userLevel = await levelResponse.json();
+
+                    // Update the levelInfo state
+                    setLevelInfo(prev => ({
+                        ...prev,
+                        [userData.level]: userLevel
+                    }));
 
                     const maxBalance = userLevel.max_balance;
-                    const balance = userData.balance;
+                    const userBalance = userData.balance;
 
-                    let percentage = (balance / maxBalance) * 100;
-                    percentage = percentage < 1 ? 1 : percentage;
+                    // Calculate percentage
+                    let percentage = (userBalance / maxBalance) * 100;
+                    if (percentage < 1) {
+                        percentage = 1;
+                    }
 
                     setLevelProcent(`${Math.ceil(percentage)}%`);
-                    setBalance(balance);
+                    setBalance(userData.balance);
                 }
             } catch (error) {
                 console.error('Ошибка при получении данных пользователя:', error);
@@ -51,22 +58,42 @@ const Leaders = () => {
 
         const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 991561880;
         fetchUserData(chatId);
+    }, []);
 
+    useEffect(() => {
         fetch('https://bankclick-bot.ru/user-ranking/')
             .then(response => response.json())
-            .then(data => setUsers(data))
-            .catch(error => console.error('Error fetching user data:', error));
+            .then(data => {
+                setUsers(data);
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
     }, []);
 
     const handlePrev = () => {
-        setCurrentLevelIndex(prevIndex => prevIndex === 0 ? levels.length - 1 : prevIndex - 1);
+        setCurrentLevelIndex(prevIndex =>
+            prevIndex === 0 ? levels.length - 1 : prevIndex - 1
+        );
     };
 
     const handleNext = () => {
-        setCurrentLevelIndex(prevIndex => prevIndex === levels.length - 1 ? 0 : prevIndex + 1);
+        setCurrentLevelIndex(prevIndex =>
+            prevIndex === levels.length - 1 ? 0 : prevIndex + 1
+        );
     };
 
     const currentLevel = levels[currentLevelIndex];
+    const currentLevelInfo = levelInfo[currentLevel.id] || { max_balance: 0 }; // Set default value if undefined
+
+    useEffect(() => {
+        document.body.style.margin = '0';
+        document.body.style.overflow = 'visible';
+
+        return () => {
+            document.body.style.margin = '';
+        };
+    }, []);
 
     return (
         <div
@@ -84,7 +111,9 @@ const Leaders = () => {
                 <span className={cl.navigate}>
                     <i className="fa-solid fa-chevron-left" onClick={handlePrev}></i>
                 </span>
-                <span className={cl.currentName} style={{ color: currentLevel.titleColor }}>{currentLevel.name}</span>
+                <span className={cl.currentName} style={{ color: currentLevel.titleColor }}>
+                    {currentLevel.name}
+                </span>
                 <span className={cl.navigate}>
                     <i className="fa-solid fa-chevron-right" onClick={handleNext}></i>
                 </span>
@@ -92,7 +121,7 @@ const Leaders = () => {
             <div className={cl.Card}>
                 <img src={currentLevel.levelCard} alt={currentLevel.name} />
             </div>
-            {currentUserLevel && currentUserLevel.id === levels[currentLevelIndex].level && (
+            {levelInfo[currentLevel.id] && (
                 <div className={cl.levelBar}>
                     <div style={{
                         width: '90%',
@@ -111,7 +140,7 @@ const Leaders = () => {
                         }}></div>
                     </div>
                     <h3 className={cl.Balance} style={{ color: currentLevel.scoreColor }}>
-                        {balance}/{currentLevel.maxBalance.toLocaleString()}
+                        {balance}/{currentLevelInfo.max_balance.toLocaleString()}
                     </h3>
                 </div>
             )}
