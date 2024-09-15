@@ -161,10 +161,10 @@ const styles = {
     position: "relative",
     fontFamily: "Roboto, sans-serif",
   },
-  icon: {
-    width: "110px",
-    height: "108px",
-  },
+  // icon: {
+  //   width: "110px",
+  //   height: "108px",
+  // },
   name: {
     fontSize: "15px",
     margin: "0px 0",
