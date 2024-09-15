@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Profile from "../components/Profile/Profile";
 import { Link, useNavigate } from "react-router-dom";
 import coin from "../components/Navbar/logohand.png";
+import Navbar from "../components/Navbar/Navbar";
 
 const Bonus = () => {
   const [cards, setCards] = useState([]);
@@ -93,6 +94,7 @@ const Bonus = () => {
           </div>
         ))}
       </div>
+      <Navbar />
     </div>
   );
 };

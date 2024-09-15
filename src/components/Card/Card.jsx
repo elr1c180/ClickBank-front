@@ -16,8 +16,6 @@ const Card = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const chatId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 991561880;
-
-    // Получаем данные пользователя при первом рендере
     useEffect(() => {
         const fetchUserData = async () => {
             try {
