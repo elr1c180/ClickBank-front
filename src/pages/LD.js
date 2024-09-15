@@ -22,7 +22,17 @@ const Leaders = () => {
     const [users, setUsers] = useState([]);
     const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
     const [levelInfo, setLevelInfo] = useState({});
+
     const navigate = useNavigate();
+    var BackButton = window.Telegram.WebApp.BackButton;
+    BackButton.show();
+
+    BackButton.onClick(function() {
+        BackButton.hide();
+    });
+    window.Telegram.WebApp.onEvent('backButtonClicked', function() {
+        navigate('/main');
+    })
 
     useEffect(() => {
         const fetchUserData = async (chatId) => {
