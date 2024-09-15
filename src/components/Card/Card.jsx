@@ -36,14 +36,12 @@ const Card = () => {
         fetchUserData();
     }, [chatId]);
 
-    // Обработчик клика по карте
     const handleClick = async (event) => {
         if (energyCount <= 0) {
             setError('Недостаточно энергии');
             return;
         }
 
-        // Обратная связь при клике
         window.Telegram.WebApp.HapticFeedback.impactOccurred('soft');
 
         setClickCount(prevClickCount => prevClickCount + 1);
@@ -51,7 +49,6 @@ const Card = () => {
         setIsClicked(true);
         setCounter(prevCounter => prevCounter + 1);
 
-        // Позиции кликов для визуализации
         const boundingRect = event.currentTarget.getBoundingClientRect();
         const offsetX = event.clientX - boundingRect.left;
         const offsetY = event.clientY - boundingRect.top;
@@ -61,7 +58,6 @@ const Card = () => {
             { x: offsetX, y: offsetY, id: counter }
         ]);
 
-        // Обновление данных на сервере
         try {
             const response = await fetch(`https://bankclick-bot.ru/user/${chatId}/update/`, {
                 method: 'PUT',
@@ -87,17 +83,14 @@ const Card = () => {
         }, 500);
     };
 
-    // Открытие модального окна
     const handleEnergyClick = () => {
         setIsModalOpen(true);
     };
 
-    // Закрытие модального окна
     const closeModal = () => {
         setIsModalOpen(false);
     };
 
-    // Форматирование номера
     const formatNumber = (num) => {
         if (num === undefined || num === null || isNaN(num)) {
             return `0000 0000 0000 0000`;
