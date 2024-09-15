@@ -94,6 +94,7 @@ const Bonus = () => {
           </div>
         ))}
       </div>
+
       <Navbar />
     </div>
   );
