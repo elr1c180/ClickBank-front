@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar/Navbar";
 
 const Bonus = () => {
   const [cards, setCards] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(1); // Default to "Marketing"
+  const [selectedCategory, setSelectedCategory] = useState(1);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -113,16 +113,15 @@ const styles = {
     outline: "none",
     background: "linear-gradient(90deg, rgba(244,165,23,1) 0%, rgba(142,96,13,1) 100%)",
   },
-  icon:{
+  icon: {
     width: '110px',
-    height: '110px'
-  }
-  ,
+    height: '110px',
+    objectFit: 'cover',
+  },
   container: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "13px",
     minHeight: "100vh",
     marginLeft: "auto",
     marginRight: "auto",
@@ -151,25 +150,25 @@ const styles = {
   cardsContainer: {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
-    gap: "20px",
+    gap: "20px", 
     maxWidth: "500px",
+    width: "100%",
   },
   card: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "10px 20px 30px 20px",
+    padding: "10px 20px",
     borderRadius: "15px",
     color: "#fff",
     textAlign: "center",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-    position: "relative",
     fontFamily: "Roboto, sans-serif",
+    height: "300px", 
+    position: "relative",
+    width: "100%",  
+    boxSizing: "border-box",  
   },
-  // icon: {
-  //   width: "110px",
-  //   height: "108px",
-  // },
   name: {
     fontSize: "15px",
     margin: "0px 0",
@@ -210,5 +209,6 @@ const styles = {
     marginLeft: "5px",
   },
 };
+
 
 export default Bonus;
