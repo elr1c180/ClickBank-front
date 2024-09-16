@@ -113,6 +113,11 @@ const styles = {
     outline: "none",
     background: "linear-gradient(90deg, rgba(244,165,23,1) 0%, rgba(142,96,13,1) 100%)",
   },
+  icon:{
+    width: '110px',
+    height: '110px'
+  }
+  ,
   container: {
     display: "flex",
     flexDirection: "column",
