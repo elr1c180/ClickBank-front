@@ -164,7 +164,6 @@ const styles = {
     textAlign: "center",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
     fontFamily: "Roboto, sans-serif",
-    height: "300px", 
     position: "relative",
     width: "100%",  
     boxSizing: "border-box",  
